@@ -1,13 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#dddddd"
     tools:context=".Wordle">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/wordle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/cabin_sketch_bold"
+        android:text="Wordle"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/hangHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/black"
+        android:text="Home page"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <EditText
+        android:id="@+id/input1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:inputType="text|textCapWords"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/input2"
+        app:layout_constraintBottom_toTopOf="@id/hangHome"/>
+
+    <EditText
+        android:id="@+id/input2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:inputType="text|textCapWords"
+        app:layout_constraintStart_toEndOf="@id/input1"
+        app:layout_constraintEnd_toStartOf="@id/input3"
+        app:layout_constraintBottom_toTopOf="@id/hangHome"/>
+    <EditText
+        android:id="@+id/input3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:inputType="text|textCapWords"
+        app:layout_constraintStart_toEndOf="@id/input2"
+        app:layout_constraintEnd_toStartOf="@id/input4"
+        app:layout_constraintBottom_toTopOf="@id/hangHome"/>
+
+    <EditText
+        android:id="@+id/input4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:inputType="text|textCapWords"
+        app:layout_constraintStart_toEndOf="@id/input3"
+        app:layout_constraintEnd_toStartOf="@id/input5"
+        app:layout_constraintBottom_toTopOf="@id/hangHome"/>
+    <EditText
+        android:id="@+id/input5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:inputType="text|textCapWords"
+        app:layout_constraintStart_toEndOf="@id/input4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/hangHome"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,10 +25,6 @@ class Hangman : Fragment() {
             val navController: NavController = view.findNavController()
             navController.navigate(R.id.action_hangman_to_home)
         }
-        val word = "hangs"
-        var underscores = "_ ".repeat(word.length-1) + "_"
-        game.text = underscores
-
 
     }
     override fun onCreateView(
