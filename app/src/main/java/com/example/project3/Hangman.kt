@@ -1,5 +1,6 @@
 package com.example.project3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,12 +25,10 @@ class Hangman : Fragment() {
             val navController: NavController = view.findNavController()
             navController.navigate(R.id.action_hangman_to_home)
         }
-        val word = "hangman"
-        var i = 0
-        while (i < word.length) {
-            game.text = (game.text.toString() + "_")
-            i++
-        }
+        val word = "hangs"
+        var underscores = "_ ".repeat(word.length-1) + "_"
+        game.text = underscores
+
 
     }
     override fun onCreateView(
