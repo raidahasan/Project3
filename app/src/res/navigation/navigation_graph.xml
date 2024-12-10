@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/hangman">
+    app:startDestination="@id/home">
 
     <fragment
         android:id="@+id/home"
@@ -26,9 +26,5 @@
         android:id="@+id/hangman"
         android:name="com.example.project3.Hangman"
         android:label="fragment_hangman"
-        tools:layout="@layout/fragment_hangman" >
-        <action
-            android:id="@+id/action_hangman_to_home"
-            app:destination="@id/home" />
-    </fragment>
+        tools:layout="@layout/fragment_hangman" />
 </navigation>
