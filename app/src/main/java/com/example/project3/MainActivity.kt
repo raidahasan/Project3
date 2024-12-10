@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        fileData = getFileData("src/main/java/project3/words")
+        fileData = getFileData("src/words")
         Log.i("load", fileData.toString())
     }
 
