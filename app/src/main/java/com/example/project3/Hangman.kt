@@ -1,6 +1,5 @@
 package com.example.project3
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,7 +24,7 @@ class Hangman : Fragment() {
             val navController: NavController = view.findNavController()
             navController.navigate(R.id.action_hangman_to_home)
         }
-        val word = "words"
+        val word = "words.txt"
         game.text = "_ ".repeat(word.length-1) + "_"
 
     }
