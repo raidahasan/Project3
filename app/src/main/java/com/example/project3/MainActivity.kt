@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.Scanner
@@ -15,9 +16,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        val appBar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(appBar)
+
         fileData = getFileData("src/words")
         Log.i("load", fileData.toString())
     }
+
 
     fun getFileData(fileName: String?): ArrayList<String> {
         val fileData = ArrayList<String>()

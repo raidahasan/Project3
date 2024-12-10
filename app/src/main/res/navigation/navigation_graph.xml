@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_home_to_hangman"
             app:destination="@id/hangman" />
+        <action
+            android:id="@+id/action_home_to_scramble"
+            app:destination="@id/scramble" />
     </fragment>
     <fragment
         android:id="@+id/wordle"
@@ -33,6 +36,15 @@
         tools:layout="@layout/fragment_hangman" >
         <action
             android:id="@+id/action_hangman_to_home"
+            app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/scramble"
+        android:name="com.example.project3.scramble"
+        android:label="fragment_scramble"
+        tools:layout="@layout/fragment_scramble" >
+        <action
+            android:id="@+id/action_scramble_to_home"
             app:destination="@id/home" />
     </fragment>
 </navigation>

@@ -5,35 +5,24 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#dddddd"
-    tools:context=".Hangman">
+    tools:context=".scramble">
 
     <TextView
-        android:id="@+id/hangman"
+        android:id="@+id/scramble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:fontFamily="@font/cabin_sketch_bold"
-        android:text="HANGMAN"
+        android:text="SCRAMBLE"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/hangHome" />
-
     <Button
-        android:id="@+id/hangHome"
+        android:id="@+id/scrambleHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
@@ -43,6 +32,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

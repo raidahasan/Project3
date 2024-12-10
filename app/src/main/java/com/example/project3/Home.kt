@@ -31,5 +31,10 @@ class Home : Fragment() {
             val navController: NavController = view.findNavController()
             navController.navigate(R.id.action_home_to_wordle)
         }
+        val goScramble = view.findViewById<Button>(R.id.scrambleDir)
+        goScramble.setOnClickListener {
+            val navController: NavController = view.findNavController()
+            navController.navigate(R.id.action_home_to_scramble)
+        }
     }
 }
