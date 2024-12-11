@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/home"
         android:name="com.example.project3.Home"
-        android:label="fragment_home"
+        android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_home_to_wordle"
@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/wordle"
         android:name="com.example.project3.Wordle"
-        android:label="fragment_wordle"
+        android:label="Wordle"
         tools:layout="@layout/fragment_wordle" >
         <action
             android:id="@+id/action_wordle_to_home"
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/hangman"
         android:name="com.example.project3.Hangman"
-        android:label="fragment_hangman"
+        android:label="Hangman"
         tools:layout="@layout/fragment_hangman" >
         <action
             android:id="@+id/action_hangman_to_home"
@@ -40,8 +40,8 @@
     </fragment>
     <fragment
         android:id="@+id/scramble"
-        android:name="com.example.project3.scramble"
-        android:label="fragment_scramble"
+        android:name="com.example.project3.Scramble"
+        android:label="Scramble"
         tools:layout="@layout/fragment_scramble" >
         <action
             android:id="@+id/action_scramble_to_home"

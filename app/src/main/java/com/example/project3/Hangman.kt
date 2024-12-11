@@ -33,6 +33,7 @@ class Hangman : Fragment() {
     private lateinit var input: EditText
     private lateinit var guesses: TextView
     private lateinit var mainActivity: MainActivity
+    private val guessedLetters = mutableSetOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,9 +126,11 @@ class Hangman : Fragment() {
                 isCorrect = true
             }
         }
-        if(!isCorrect){
-            timesWrong++
+
+        if (!guessedLetters.contains(string) && !isCorrect) {
+            guessedLetters.add(string)
             guesses.text = "${guesses.text} $string"
+            timesWrong++
         }
         game.text = currentState.joinToString(" ")
         if((game.text as String).replace(" ", "")==(word)){
@@ -141,6 +144,7 @@ class Hangman : Fragment() {
     }
 
     fun reset(){
+        guessedLetters.clear()
         guesses.text = "Previous Guesses:"
         timesWrong = 0
         message.text = ""

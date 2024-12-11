@@ -10,7 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 
 
-class scramble : Fragment() {
+class Scramble : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
