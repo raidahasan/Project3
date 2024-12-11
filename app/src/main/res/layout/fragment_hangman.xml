@@ -15,11 +15,23 @@
         android:fontFamily="@font/cabin_sketch_bold"
         android:text="HANGMAN"
         android:textColor="@color/black"
-        android:textSize="50dp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/guesses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/cabin_sketch_bold"
+        android:text="Previous Guesses: "
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hangman" />
 
     <Button
         android:id="@+id/hangHome"
@@ -40,7 +52,7 @@
         android:layout_marginTop="70dp"
         android:text=""
         android:textColor="@color/black"
-        android:textSize="80dp"
+        android:textSize="80sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/hangHome" />
@@ -142,5 +154,18 @@
         app:layout_constraintTop_toTopOf="@id/body"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/winOrLose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="300dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/hangHome" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,11 +13,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import kotlinx.coroutines.delay
+import org.w3c.dom.Text
+import java.lang.Thread.sleep
 
 class Hangman : Fragment() {
-    var word = ""
-    lateinit var game: TextView
+    private var word = ""
+    private lateinit var game: TextView
     private var timesWrong = 0
+    private lateinit var title: TextView
     private lateinit var head: ImageView
     private lateinit var hair: ImageView
     private lateinit var leftArm: ImageView
@@ -25,6 +29,10 @@ class Hangman : Fragment() {
     private lateinit var leftLeg: ImageView
     private lateinit var rightLeg: ImageView
     private lateinit var body: ImageView
+    private lateinit var message: TextView
+    private lateinit var input: EditText
+    private lateinit var guesses: TextView
+    private lateinit var mainActivity: MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +40,9 @@ class Hangman : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        guesses = view.findViewById(R.id.guesses)
+        message = view.findViewById(R.id.winOrLose)
+        title = view.findViewById(R.id.hangman)
         head = view.findViewById(R.id.head)
         hair = view.findViewById(R.id.hair)
         leftArm = view.findViewById(R.id.leftArm)
@@ -54,10 +65,10 @@ class Hangman : Fragment() {
             val navController: NavController = view.findNavController()
             navController.navigate(R.id.action_hangman_to_home)
         }
-        val mainActivity = activity as? MainActivity
+        mainActivity = (activity as? MainActivity)!!
         word = mainActivity?.fileData?.random().toString()
         game.text = "_ ".repeat(word.length-1) + "_"
-        val input = view.findViewById<EditText>(R.id.input)
+        input = view.findViewById<EditText>(R.id.input)
         input.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -80,6 +91,11 @@ class Hangman : Fragment() {
                         rightLeg.visibility = View.VISIBLE
                     }else if(timesWrong>7){
                         input.isEnabled = false
+                        message.text = "It was $word, try again!"
+                        message.postDelayed({
+                            message.text = ""
+                            reset()
+                        }, 1000)
 
                     }
                     input.text.clear()
@@ -111,9 +127,34 @@ class Hangman : Fragment() {
         }
         if(!isCorrect){
             timesWrong++
+            guesses.text = "${guesses.text} $string"
         }
         game.text = currentState.joinToString(" ")
+        if((game.text as String).replace(" ", "")==(word)){
+            input.isEnabled = false
+            message.text = "Guessed it!"
+            message.postDelayed({
+                message.text = ""
+                reset()
+            }, 1000)
+        }
     }
 
+    fun reset(){
+        guesses.text = "Previous Guesses:"
+        timesWrong = 0
+        message.text = ""
+        input.text.clear()
+        word = mainActivity.fileData.random().toString()
+        game.text = "_ ".repeat(word.length-1) + "_"
+        head.visibility = View.INVISIBLE
+        hair.visibility = View.INVISIBLE
+        body.visibility = View.INVISIBLE
+        leftLeg.visibility = View.INVISIBLE
+        rightLeg.visibility = View.INVISIBLE
+        rightArm.visibility = View.INVISIBLE
+        leftArm.visibility = View.INVISIBLE
+        input.isEnabled=true
+    }
 
 }
