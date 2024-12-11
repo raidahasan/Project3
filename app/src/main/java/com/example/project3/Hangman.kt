@@ -58,14 +58,15 @@ class Hangman : Fragment() {
         rightLeg.visibility = View.INVISIBLE
         rightArm.visibility = View.INVISIBLE
         leftArm.visibility = View.INVISIBLE
-
         var guessLetter = ""
         game = view.findViewById<TextView>(R.id.game)
+
         val goHome = view.findViewById<Button>(R.id.hangHome)
         goHome.setOnClickListener {
             val navController: NavController = view.findNavController()
             navController.navigate(R.id.action_hangman_to_home)
         }
+
         mainActivity = (activity as? MainActivity)!!
         word = mainActivity?.fileData?.random().toString()
         game.text = "_ ".repeat(word.length-1) + "_"

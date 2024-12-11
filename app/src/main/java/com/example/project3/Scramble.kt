@@ -6,11 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 
 
 class Scramble : Fragment() {
+    private var word = ""
+    private lateinit var scrambled: TextView
+    private lateinit var input: EditText
+    private lateinit var mainActivity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,10 +28,23 @@ class Scramble : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        scrambled = view.findViewById(R.id.scrambledWord)
         val goHome = view.findViewById<Button>(R.id.scrambleHome)
         goHome.setOnClickListener {
             val navController: NavController = view.findNavController()
             navController.navigate(R.id.action_scramble_to_home)
         }
+        mainActivity = (activity as? MainActivity)!!
+        word = mainActivity?.fileData?.random().toString()
+        input = view.findViewById(R.id.scrambleGuess)
+
+        scrambled.text = shuffle(word)
     }
+
+    fun shuffle(string: String): String {
+        var wordarr = string.toCharArray()
+        wordarr.shuffle()
+        return wordarr.toString()
+    }
+
 }
