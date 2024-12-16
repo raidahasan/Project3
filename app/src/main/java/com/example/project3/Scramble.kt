@@ -41,10 +41,10 @@ class Scramble : Fragment() {
         scrambled.text = shuffle(word)
     }
 
-    fun shuffle(string: String): String {
+    fun shuffle(string: String): CharArray {
         var wordarr = string.toCharArray()
         wordarr.shuffle()
-        return wordarr.toString()
+        return wordarr
     }
 
 }
