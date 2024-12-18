@@ -1,6 +1,8 @@
 package com.example.project3
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,8 +40,18 @@ class Scramble : Fragment() {
         mainActivity = (activity as? MainActivity)!!
         word = mainActivity?.fileData?.random().toString()
         input = view.findViewById(R.id.scrambleGuess)
+        var guessWord = ""
+        input.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                guessWord = input.text.toString().uppercase()
+            }
 
+            override fun afterTextChanged(p0: Editable?) {
+                TODO("Not yet implemented")
+            }
+        })
 
         val sArr = word.toCharArray()
         sArr.shuffle()
