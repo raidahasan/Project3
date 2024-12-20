@@ -19,6 +19,7 @@ class Scramble : Fragment() {
     private var word = ""
     private lateinit var scrambled: TextView
     private lateinit var input: EditText
+    private lateinit var message: TextView
     private lateinit var mainActivity: MainActivity
 
     override fun onCreateView(
@@ -32,6 +33,7 @@ class Scramble : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         scrambled = view.findViewById(R.id.scrambledWord)
+        message = view.findViewById(R.id.winOrLose)
         val goHome = view.findViewById<Button>(R.id.scrambleHome)
         goHome.setOnClickListener {
             val navController: NavController = view.findNavController()
@@ -49,7 +51,21 @@ class Scramble : Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                TODO("Not yet implemented")
+                if (guessWord !== word) {
+                    input.isEnabled = false
+                    message.text = "Wrong, try again!"
+                    message.postDelayed({
+                        message.text = ""
+                    }, 1000)
+                    input.text.clear()
+                } else {
+                    input.isEnabled = false
+                    message.text = "Guessed it!"
+                    message.postDelayed({
+                        message.text = ""
+                        reset()
+                    }, 1000)
+                }
             }
         })
 
@@ -60,6 +76,13 @@ class Scramble : Fragment() {
         Log.i("Scramble", "${scrambled.text}")
     }
 
-
+    fun reset() {
+        word = ""
+        scrambled = ""
+        input.text.clear()
+        message = ""
+        mainActivity: MainActivity
+        input.isEnabled = true
+    }
 
 }
