@@ -17,10 +17,12 @@ import androidx.navigation.findNavController
 
 class Scramble : Fragment() {
     private var word = ""
+    private var scrambledWord = ""
     private lateinit var scrambled: TextView
     private lateinit var input: EditText
     private lateinit var message: TextView
     private lateinit var mainActivity: MainActivity
+    private lateinit var checkWord: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +36,8 @@ class Scramble : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         scrambled = view.findViewById(R.id.scrambledWord)
         message = view.findViewById(R.id.winOrLose)
+        checkWord = view.findViewById(R.id.scrambleCheck)
+
         val goHome = view.findViewById<Button>(R.id.scrambleHome)
         goHome.setOnClickListener {
             val navController: NavController = view.findNavController()
@@ -42,46 +46,52 @@ class Scramble : Fragment() {
         mainActivity = (activity as? MainActivity)!!
         word = mainActivity?.fileData?.random().toString()
         input = view.findViewById(R.id.scrambleGuess)
-        var guessWord = ""
-        input.addTextChangedListener( object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                guessWord = input.text.toString().uppercase()
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (guessWord !== word) {
-                    input.isEnabled = false
-                    message.text = "Wrong, try again!"
-                    message.postDelayed({
-                        message.text = ""
-                    }, 1000)
-                    input.text.clear()
-                } else {
-                    input.isEnabled = false
-                    message.text = "Guessed it!"
-                    message.postDelayed({
-                        message.text = ""
-                        reset()
-                    }, 1000)
-                }
-            }
-        })
 
         val sArr = word.toCharArray()
         sArr.shuffle()
-        word = StringBuilder().append(sArr).toString()
-        scrambled.text = word
+        scrambledWord = StringBuilder().append(sArr).toString()
+        scrambled.text = scrambledWord
         Log.i("Scramble", "${scrambled.text}")
+        var guessWord = ""
+
+        input.addTextChangedListener( object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(p0: Editable?) {
+                guessWord = input.text.toString().uppercase()
+            }
+        })
+        checkWord.setOnClickListener {
+            if (guessWord != word) {
+                input.isEnabled = false
+                message.text = "Wrong, try again!"
+                message.postDelayed({
+                    message.text = ""
+                }, 1000)
+                input.isEnabled = true
+            } else if (guessWord == word){
+                input.isEnabled = false
+                message.text = "Guessed it!"
+                message.postDelayed({
+                    message.text = ""
+                    reset()
+                }, 1000)
+            }
+            input.setText("")
+            input.clearFocus()
+
+        }
+
     }
 
     fun reset() {
-        word = ""
-        scrambled = ""
+        word = mainActivity.fileData.random().toString()
+        val sArr = word.toCharArray()
+        sArr.shuffle()
+        scrambledWord = StringBuilder().append(sArr).toString()
+        scrambled.text = scrambledWord
         input.text.clear()
-        message = ""
-        mainActivity: MainActivity
+        message.setText("")
         input.isEnabled = true
     }
 

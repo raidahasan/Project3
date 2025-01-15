@@ -35,6 +35,7 @@ class Hangman : Fragment() {
     private lateinit var mainActivity: MainActivity
     private val guessedLetters = mutableSetOf<String>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
